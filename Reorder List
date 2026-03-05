@@ -1,0 +1,29 @@
+class Solution {
+    private ListNode reverse(ListNode head) {
+        ListNode prev = null;
+        while (head != null) {
+            ListNode next = head.next;
+            head.next = prev;
+            prev = head;
+            head = next;
+        }
+        return prev;
+    }
+    public void reorderList(ListNode head) {
+        ListNode slow = head, fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode end = reverse(slow);
+        ListNode start = head;
+        while(end.next != null){
+            ListNode temp1 = start.next;
+            ListNode temp2 = end.next;
+            start.next = end;
+            end.next = temp1;
+            start = temp1;
+            end = temp2;
+        }
+    }
+}
