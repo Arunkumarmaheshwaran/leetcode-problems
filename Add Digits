@@ -1,0 +1,18 @@
+class Solution {
+    public int addDigits(int num) {
+        int i;
+        for(i=0;i<num;i++){
+            int a=num%10; 
+            int b=num-a;
+            b=b/10;
+            num=a+b;  
+            }
+            int j;
+            for(j=0;j<num;j++){
+                int a=num%10; 
+                int b=num-a;
+                b=b/10;
+                num=a+b;
+            }return num;
+    }
+}
