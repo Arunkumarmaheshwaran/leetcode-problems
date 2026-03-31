@@ -1,0 +1,19 @@
+class Solution {
+    public boolean canPlaceFlowers(int[] flowerbed, int n) {
+        return canPlace(flowerbed, 0, n, new Boolean[flowerbed.length][n + 1]);
+    }
+    private boolean canPlace(int[] bed, int index, int n, Boolean[][] memo) {
+        if (n <= 0) return true;
+        if (index >= bed.length) return false;
+        if (memo[index][n] != null) return memo[index][n];
+        boolean canPlantHere = bed[index] == 0 && 
+                              (index == 0 || bed[index - 1] == 0) && 
+                              (index == bed.length - 1 || bed[index + 1] == 0);
+        if (canPlantHere) {
+            bed[index] = 1; 
+            if (canPlace(bed, index + 2, n - 1, memo)) return memo[index][n] = true;
+            bed[index] = 0; 
+        }
+        return memo[index][n] = canPlace(bed, index + 1, n, memo);
+    }
+}
