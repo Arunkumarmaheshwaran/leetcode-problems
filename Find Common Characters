@@ -1,0 +1,30 @@
+import java.util.*;
+class Solution {
+    public List<String> commonChars(String[] words) {
+        Map<Character, Integer> commonMap = new HashMap<>();
+        for (char c : words[0].toCharArray()) {
+            commonMap.put(c, commonMap.getOrDefault(c, 0) + 1);
+        }
+        for (int i = 1; i < words.length; i++) {
+            Map<Character, Integer> currentMap = new HashMap<>();
+            for (char c : words[i].toCharArray()) {
+                currentMap.put(c, currentMap.getOrDefault(c, 0) + 1);
+            }
+            List<Character> keys = new ArrayList<>(commonMap.keySet());
+            for (char key : keys) {
+                if (currentMap.containsKey(key)) {
+                    commonMap.put(key, Math.min(commonMap.get(key), currentMap.get(key)));
+                } else {
+                    commonMap.remove(key);
+                }
+            }
+        }
+        List<String> result = new ArrayList<>();
+        for (Map.Entry<Character, Integer> entry : commonMap.entrySet()) {
+            for (int i = 0; i < entry.getValue(); i++) {
+                result.add(String.valueOf(entry.getKey()));
+            }
+        }
+        return result;
+    }
+}
