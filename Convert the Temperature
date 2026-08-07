@@ -1,0 +1,9 @@
+class Solution {
+    public double[] convertTemperature(double celsius) {
+        double out[]=new double[2];
+        int i=0;
+        out[i]=celsius+273.15;
+        out[i+1]=celsius*1.80+32.00;
+        return out;
+    }
+}
