@@ -1,0 +1,18 @@
+class Solution {
+    public void sortColors(int[] nums) {
+        int ptr = 0;
+
+        while (ptr < nums.length) {
+
+            if (ptr > 0 && nums[ptr -1] > nums[ptr]) {
+                int temp = nums[ptr - 1];
+                nums[ptr - 1] = nums[ptr];
+                nums[ptr] = temp;
+
+                ptr -= 1;
+            } else {
+                ptr += 1;
+            }
+        }
+    }
+}
