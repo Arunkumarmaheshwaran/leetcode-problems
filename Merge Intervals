@@ -1,0 +1,33 @@
+import java.util.ArrayList;
+import java.util.List;
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        if (intervals == null || intervals.length <= 1) {
+            return intervals;
+        }
+        List<int[]> list = new ArrayList<>();
+        for (int[] interval : intervals) {
+            list.add(interval);
+        }
+        int i = 0;
+        while (i < list.size()) {
+            int[] current = list.get(i);
+            boolean mergedAny = false;
+            for (int j = i + 1; j < list.size(); j++) {
+                int[] next = list.get(j);
+                boolean overlap = (current[0] <= next[1] && next[0] <= current[1]);
+                if (overlap) {
+                    current[0] = Math.min(current[0], next[0]);
+                    current[1] = Math.max(current[1], next[1]);
+                    list.remove(j);
+                    mergedAny = true;
+                    break; 
+                }
+            }
+            if (!mergedAny) {
+                i++;
+            }
+        }
+        return list.toArray(new int[list.size()][]);
+    }
+}
