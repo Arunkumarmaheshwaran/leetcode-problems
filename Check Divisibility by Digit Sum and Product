@@ -1,0 +1,18 @@
+class Solution {
+    public boolean checkDivisibility(int n) {
+        if(String.valueOf(n).contains("0") && n<100) return true;
+        if(n<=9){
+            return false;
+        }
+        int s1=0,s2=1;
+        int temp=n;
+        while(n>0){
+            int r=n%10;
+            s1+=r;
+            s2*=r;
+            n=n/10;
+        }
+        if(temp% (s1+s2)==0) return true;
+        return false;
+    }
+}
