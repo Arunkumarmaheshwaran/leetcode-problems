@@ -1,0 +1,17 @@
+class Solution {
+    public boolean consecutiveSetBits(int n) {
+        int c=0;
+        String s=Integer.toBinaryString(n);
+        for(int i=0;i<s.length()-1;i++){
+            String t=String.valueOf(s.charAt(i));
+            t+=String.valueOf(s.charAt(i+1));
+            if(t.contains("11")){
+                c++;
+            }
+        }
+        if(c==1){
+            return true;
+        }
+       return false;
+    }
+}
